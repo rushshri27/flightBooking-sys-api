@@ -18,7 +18,7 @@
 		<app.runtime>4.4.0</app.runtime>
 		<mule.maven.plugin.version>3.5.2</mule.maven.plugin.version>
 		<munit.version>2.3.6</munit.version>
-		<mule.tools.version>1.7</mule.tools.version>
+		
 	</properties>
 
 	<build>
@@ -31,23 +31,23 @@
 			<plugin>
 				<groupId>org.mule.tools.maven</groupId>
 				<artifactId>mule-maven-plugin</artifactId>
-				<version>${mule.tools.version}</version>
+				<version>${mule.maven.plugin.version}</version>
 				<extensions>true</extensions>
 				<configuration>
 					<cloudHubDeployment>
 						<uri>https://anypoint.mulesoft.com</uri>
-						<muleVersion>${muleVersion}</muleVersion>
-						<username>${username}</username>
-						<password>${password}</password>
-						<applicationName>${applicationName}</applicationName>
-						<environment>${environment}</environment>
-						<businessGroup>${businessGroup}</businessGroup>
-						<workerType>${workerType}</workerType>
+						<muleVersion>4.4.0</muleVersion>
+						<username>jaybhagwat06</username>
+						<password>9Jay168bhagwat@</password>
+						<applicationName>flightBooking-sys-api-v1</applicationName>
+						<environment>Sandbox</environment>
+						<businessGroup>Apisero</businessGroup>
+						<workerType>Micro</workerType>
 						<objectStoreV2>true</objectStoreV2>
-						<properties>
+						<!-- <properties>
 							<anypoint.platform.client_id>${anypoint.platform.client_id}</anypoint.platform.client_id>
 							<anypoint.platform.client_secret>${anypoint.platform.client_secret}</anypoint.platform.client_secret>
-						</properties>
+						</properties> -->
 					</cloudHubDeployment>
 					<sharedLibraries>
 						<sharedLibrary>
