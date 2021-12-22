@@ -37,8 +37,8 @@
 					<cloudHubDeployment>
 						<uri>https://anypoint.mulesoft.com</uri>
 						<muleVersion>4.4.0</muleVersion>
-						<username>jaybhagwat06</username>
-						<password>9Jay168bhagwat@</password>
+						<username>${username}</username>
+						<password>${password}</password>
 						<applicationName>flightBooking-sys-api-v1</applicationName>
 						<environment>Sandbox</environment>
 						<businessGroup>Apisero</businessGroup>
