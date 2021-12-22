@@ -97,6 +97,7 @@ output application/json
 		<logger level="INFO" doc:name="End cancelFlight process" doc:id="34c4021a-ffb4-4af1-ab89-ee1a48034107" message='#["cancelFlight Flow Start " ++ now() as String]' />
 	</flow>
 	<flow name="fetchBookedFlightDetails" doc:id="5b571eee-8512-41ab-91db-7e7139abb019" >
+		<logger level="INFO" doc:name="Start fetchBookedFlight Flow" doc:id="15769152-fb17-4e09-8608-55b38e138296" message='#["fetchBookedFlight  Flow Start " ++ now() as String]' />
 		<db:select doc:name="Fetch Booked flight details" doc:id="79903703-e2a2-4745-bd85-c90e2a330561" config-ref="Database_Config">
 			<db:sql ><![CDATA[select fb.flightId,fb.bookingId,f.airlineName,f.departureTime,f.arrivalTime,fb.departureDate,f.fare as farePerSeat,
 fb.seatsBooked from FlightBooking fb inner join Flights f on fb.flightId = f.flightId where fb.bookingId =:bookingId and fb.departureDate =:departureDate]]></db:sql>
@@ -130,5 +131,6 @@ output application/json
 payload[0]]]></ee:set-payload>
 			</ee:message>
 		</ee:transform>
+		<logger level="INFO" doc:name="End fetchBookedFlight  flow" doc:id="80378e2b-7aa0-4631-987f-1b44498a2ef5" message='#["fetchBookedFlight  Flow End " ++ now() as String]'/>
 	</flow>
 </mule>
