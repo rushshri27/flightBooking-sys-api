@@ -1,0 +1,11 @@
+%dw 2.0
+
+type auto_94b70324_0639_4a65_ae83_5498f29722ab_Output_Payload = {
+  departureTime: String, 
+  passengerNames: Array<Any>, 
+  departureDate: String, 
+  message: String, 
+  bookingId: Number, 
+  _?: Any
+}
+

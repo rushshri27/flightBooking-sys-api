@@ -1,0 +1,55 @@
+#%RAML 1.0
+title: flight-partner-api
+uses:
+  flightLibrary: /exchange_modules/c63aa1e8-b7a6-40ed-872b-0362599242b1/bookmyholiday/1.0.13/booymyholiday.raml
+
+/flights:
+  type: 
+    flightLibrary.collection:
+      typeName: flightLibrary.flight
+      example: !include /exchange_modules/c63aa1e8-b7a6-40ed-872b-0362599242b1/bookmyholiday/1.0.13/Examples/Flight/flights.json
+      errorTypeName: flightLibrary.noDataFoundError 
+      errorExample: !include /exchange_modules/c63aa1e8-b7a6-40ed-872b-0362599242b1/bookmyholiday/1.0.13/Examples/noDataFoundError.json
+    
+  get:
+    queryParameters:
+      source:
+        displayName: Source
+        required: true
+        type: string
+        enum: [Mumbai,Pune,Bengaluru,Shrinagr,Goa,Delhi,
+        Hyderabad,Chennai]
+
+      destination:
+        displayName: Destination
+        required: true
+        type: 
+        enum: [Mumbai,Pune,Bengaluru,Shrinagr,Goa,Delhi,Hyderabad,Chennai]
+      departureDate:
+        displayName: Departure Date
+        required: true
+        type: date-only
+
+  /bookFlight:
+    post:
+    type:
+      flightLibrary.item:
+        requestTypeName: flightLibrary.flightBookingRequest
+        requestExample: !include /exchange_modules/c63aa1e8-b7a6-40ed-872b-0362599242b1/bookmyholiday/1.0.13/Examples/Flight/flightBookingRequest.json
+        reponseTypeName: flightLibrary.flightBookingResponse
+        responseExample: !include /exchange_modules/c63aa1e8-b7a6-40ed-872b-0362599242b1/bookmyholiday/1.0.13/Examples/Flight/flightBookingResponse.json
+     
+            
+  /cancelFlight/{bookingId}:   
+    delete:
+    type:
+      flightLibrary.item:
+        typeName: "Flight"
+
+  /bookedFlightDetails:
+    post:
+        description: Fetch booked flight data based on bookingId and flightId
+        is: [flightLibrary.responseItemOkTrait:{"typeName":flightLibrary.bookedFlightDetailsResponse,"example":!include /exchange_modules/c63aa1e8-b7a6-40ed-872b-0362599242b1/bookmyholiday/1.0.13/Examples/Flight/bookedFlightDetailsResponse.json
+},
+flightLibrary.requestItemTrait: {"typeName":flightLibrary.bookedFlightDetailsRequest,"example":!include /exchange_modules/c63aa1e8-b7a6-40ed-872b-0362599242b1/bookmyholiday/1.0.13/Examples/Flight/bookedFlightDetailsRequest.json}]
+   

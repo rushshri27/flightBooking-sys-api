@@ -1,0 +1,14 @@
+%dw 2.0
+
+type auto_5b571eee_8512_41ab_91db_7e7139abb019_Output_Payload = {
+  departureTime: String, 
+  arrivalTime: String, 
+  farePerSeat: Number, 
+  flightId: Number, 
+  departureDate: String, 
+  bookingId: Number, 
+  airlineName: String, 
+  seatsBooked: Number, 
+  _?: Any
+}
+
