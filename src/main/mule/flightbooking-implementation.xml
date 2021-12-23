@@ -123,14 +123,6 @@ payload map ( payload01 , indexOfPayload01 ) -> {
 }]]></ee:set-payload>
 			</ee:message>
 		</ee:transform>
-		<ee:transform doc:name="Transforming Output to require format" doc:id="2c23e3b5-c53a-4069-abba-cc7e86035035" >
-			<ee:message >
-				<ee:set-payload ><![CDATA[%dw 2.0
-output application/json
----
-payload[0]]]></ee:set-payload>
-			</ee:message>
-		</ee:transform>
 		<logger level="INFO" doc:name="End fetchBookedFlight  flow" doc:id="80378e2b-7aa0-4631-987f-1b44498a2ef5" message='#["fetchBookedFlight  Flow End " ++ now() as String]'/>
 	</flow>
 </mule>

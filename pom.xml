@@ -1,7 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>com.mycompany</groupId>
@@ -18,7 +16,6 @@
 		<app.runtime>4.4.0</app.runtime>
 		<mule.maven.plugin.version>3.5.2</mule.maven.plugin.version>
 		<munit.version>2.3.6</munit.version>
-		
 	</properties>
 
 	<build>
@@ -36,18 +33,18 @@
 				<configuration>
 					<cloudHubDeployment>
 						<uri>https://anypoint.mulesoft.com</uri>
-						<muleVersion>4.4.0</muleVersion>
+						<muleVersion>${muleVersion}</muleVersion>
 						<username>${username}</username>
 						<password>${password}</password>
-						<applicationName>flightBooking-sys-api-v1</applicationName>
-						<environment>Sandbox</environment>
-						<businessGroup>Apisero</businessGroup>
-						<workerType>Micro</workerType>
+						<applicationName>${applicationName}</applicationName>
+						<environment>${environment}</environment>
+						<businessGroup>${businessGroup}</businessGroup>
+						<workerType>${workerType}</workerType>
 						<objectStoreV2>true</objectStoreV2>
-						<!-- <properties>
+						<properties>
 							<anypoint.platform.client_id>${anypoint.platform.client_id}</anypoint.platform.client_id>
 							<anypoint.platform.client_secret>${anypoint.platform.client_secret}</anypoint.platform.client_secret>
-						</properties> -->
+						</properties>
 					</cloudHubDeployment>
 					<sharedLibraries>
 						<sharedLibrary>
@@ -79,7 +76,7 @@
 						</formats>
 					</coverage>
 				</configuration>
-			</plugin> 
+			</plugin>
 		</plugins>
 	</build>
 
@@ -99,12 +96,6 @@
 			<groupId>org.mule.modules</groupId>
 			<artifactId>mule-apikit-module</artifactId>
 			<version>1.5.7</version>
-			<classifier>mule-plugin</classifier>
-		</dependency>
-		<dependency>
-			<groupId>org.mule.connectors</groupId>
-			<artifactId>mule-db-connector</artifactId>
-			<version>1.10.6</version>
 			<classifier>mule-plugin</classifier>
 		</dependency>
 		<dependency>
@@ -142,9 +133,15 @@
 		<dependency>
 			<groupId>c63aa1e8-b7a6-40ed-872b-0362599242b1</groupId>
 			<artifactId>flightbooking-api</artifactId>
-			<version>1.0.9</version>
+			<version>1.0.10</version>
 			<classifier>raml</classifier>
 			<type>zip</type>
+		</dependency>
+		<dependency>
+			<groupId>org.mule.connectors</groupId>
+			<artifactId>mule-db-connector</artifactId>
+			<version>1.11.0</version>
+			<classifier>mule-plugin</classifier>
 		</dependency>
 	</dependencies>
 

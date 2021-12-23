@@ -8,7 +8,7 @@
 		http://www.mulesoft.org/schema/mule/munit http://www.mulesoft.org/schema/mule/munit/current/mule-munit.xsd
 		http://www.mulesoft.org/schema/mule/munit-tools  http://www.mulesoft.org/schema/mule/munit-tools/current/mule-munit-tools.xsd">
 	<munit:config name="flightbooking-api-suite.xml" />
-	<munit:test name="flightbooking-api-main-test" doc:id="b705d0e4-c2de-4a40-ba9a-32ac2d85e81d" >
+	<munit:test name="flightbooking-api-main-test" doc:id="b705d0e4-c2de-4a40-ba9a-32ac2d85e81d">
 		<munit:behavior >
 			<munit-tools:mock-when doc:name="Mock APIkit Router" doc:id="d1274e73-8f7e-4aef-a414-e81c20354dd1" processor="apikit:router">
 				<munit-tools:with-attributes >
@@ -39,6 +39,44 @@ assert_expression_payload2::main({payload: payload, attributes: attributes, vars
 			</munit-tools:assert>
 		</munit:validation>
 	</munit:test>
+	
+	<munit:test name="flightbooking-api-main-test-bad-request" doc:id="57a5e4ca-df77-47ae-a5a6-7fa845126472" >
+		<munit:behavior >
+			<munit-tools:mock-when doc:name="Mock APIkit Router" doc:id="068b26b3-c248-40e3-b388-c526c81591fb" processor="apikit:router">
+				<munit-tools:with-attributes >
+					<munit-tools:with-attribute whereValue="1f9730c6-d303-4c7f-b52d-cf9728810ecd" attributeName="doc:id" />
+				</munit-tools:with-attributes>
+				<munit-tools:then-return >
+					<munit-tools:error typeId="APIKIT:BAD_REQUEST" />
+					<munit-tools:variables >
+						<munit-tools:variable key="outboundHeaders" value="#[readUrl('classpath://flightbookingapimaintest\mock_variable_.dwl')]" />
+						<munit-tools:variable key="httpStatus" value="#['400']" />
+					</munit-tools:variables>
+				</munit-tools:then-return>
+			
+</munit-tools:mock-when>
+			<munit:set-event doc:name="Set Input" doc:id="7c73e559-0580-437b-88e9-6ad686dee3f0" >
+				<munit:payload value="#[readUrl('classpath://flightbookingapimaintest\set-event_payload2.dwl')]" encoding="UTF-8" />
+				<munit:attributes value="#[readUrl('classpath://flightbookingapimaintest\set-event_attributes2.dwl')]" />
+			</munit:set-event>
+		</munit:behavior>
+		<munit:execution>
+			<try doc:name="Try" doc:id="e29956eb-4f16-4dd5-b38f-3dfbc32abe12" >
+				<flow-ref doc:name="Flow-ref to flightbooking-api-main" doc:id="034d47b0-f3e6-43d9-b2b1-8df7d9e0bada" name="flightbooking-api-main" />
+				<error-handler >
+					<on-error-continue enableNotifications="true" logException="true" doc:name="On Error Continue" doc:id="ebe9809a-1e07-4e13-83a0-956cf7363e29" >
+						<logger level="INFO" doc:name="Logger" doc:id="ccd5a92f-2c84-4fe0-8348-e03fbdc7a971" />
+					</on-error-continue>
+				</error-handler>
+			</try>
+
+		</munit:execution>
+		<munit:validation>
+			<munit-tools:assert-that doc:name="Assert that" doc:id="29324e49-0583-417e-889c-2dc95eccff2c" expression="#[payload.message]" is='#[MunitTools::equalTo("Bad request")]'/>
+
+		</munit:validation>
+	
+</munit:test>
 
 
 </mule>

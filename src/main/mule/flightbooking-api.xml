@@ -14,7 +14,7 @@
                 <http:headers>#[vars.outboundHeaders default {}]</http:headers>
             </http:error-response>
         </http:listener>
-        <apikit:router config-ref="flightbooking-api-config" doc:id="1f9730c6-d303-4c7f-b52d-cf9728810ecd"/>
+        <apikit:router config-ref="flightbooking-api-config" doc:id="1f9730c6-d303-4c7f-b52d-cf9728810ecd" />
         <error-handler>
             <on-error-propagate type="APIKIT:BAD_REQUEST">
                 <ee:transform xsi:schemaLocation="http://www.mulesoft.org/schema/mule/ee/core http://www.mulesoft.org/schema/mule/ee/core/current/mule-ee.xsd">

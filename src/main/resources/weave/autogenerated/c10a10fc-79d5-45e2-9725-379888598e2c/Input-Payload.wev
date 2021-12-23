@@ -1,9 +1,0 @@
-%dw 2.0
-
-type auto_c10a10fc_79d5_45e2_9725_379888598e2c_Input_Payload = {
-  flightId: Number, 
-  departureDate: String, 
-  bookingId: Number, 
-  _?: Any
-}
-

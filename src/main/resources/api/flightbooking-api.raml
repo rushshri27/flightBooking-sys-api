@@ -1,15 +1,16 @@
 #%RAML 1.0
 title: flight-partner-api
 uses:
-  flightLibrary: /exchange_modules/c63aa1e8-b7a6-40ed-872b-0362599242b1/bookmyholiday/1.0.13/booymyholiday.raml
+  flightLibrary: /exchange_modules/c63aa1e8-b7a6-40ed-872b-0362599242b1/bookmyholiday/1.0.16/booymyholiday.raml
 
 /flights:
+  is: [flightLibrary.client_id_required]
   type: 
     flightLibrary.collection:
       typeName: flightLibrary.flight
-      example: !include /exchange_modules/c63aa1e8-b7a6-40ed-872b-0362599242b1/bookmyholiday/1.0.13/Examples/Flight/flights.json
+      example: !include /exchange_modules/c63aa1e8-b7a6-40ed-872b-0362599242b1/bookmyholiday/1.0.16/Examples/Flight/flights.json
       errorTypeName: flightLibrary.noDataFoundError 
-      errorExample: !include /exchange_modules/c63aa1e8-b7a6-40ed-872b-0362599242b1/bookmyholiday/1.0.13/Examples/noDataFoundError.json
+      errorExample: !include /exchange_modules/c63aa1e8-b7a6-40ed-872b-0362599242b1/bookmyholiday/1.0.16/Examples/noDataFoundError.json
     
   get:
     queryParameters:
@@ -31,25 +32,28 @@ uses:
         type: date-only
 
   /bookFlight:
+    is: [flightLibrary.client_id_required]
     post:
     type:
       flightLibrary.item:
         requestTypeName: flightLibrary.flightBookingRequest
-        requestExample: !include /exchange_modules/c63aa1e8-b7a6-40ed-872b-0362599242b1/bookmyholiday/1.0.13/Examples/Flight/flightBookingRequest.json
+        requestExample: !include /exchange_modules/c63aa1e8-b7a6-40ed-872b-0362599242b1/bookmyholiday/1.0.16/Examples/Flight/flightBookingRequest.json
         reponseTypeName: flightLibrary.flightBookingResponse
-        responseExample: !include /exchange_modules/c63aa1e8-b7a6-40ed-872b-0362599242b1/bookmyholiday/1.0.13/Examples/Flight/flightBookingResponse.json
+        responseExample: !include /exchange_modules/c63aa1e8-b7a6-40ed-872b-0362599242b1/bookmyholiday/1.0.16/Examples/Flight/flightBookingResponse.json
      
             
-  /cancelFlight/{bookingId}:   
+  /cancelFlight/{bookingId}: 
+    is: [flightLibrary.client_id_required]  
     delete:
     type:
       flightLibrary.item:
         typeName: "Flight"
 
   /bookedFlightDetails:
+    is: [flightLibrary.client_id_required]
     post:
         description: Fetch booked flight data based on bookingId and flightId
-        is: [flightLibrary.responseItemOkTrait:{"typeName":flightLibrary.bookedFlightDetailsResponse,"example":!include /exchange_modules/c63aa1e8-b7a6-40ed-872b-0362599242b1/bookmyholiday/1.0.13/Examples/Flight/bookedFlightDetailsResponse.json
+        is: [flightLibrary.responseItemOkTrait:{"typeName":flightLibrary.bookedFlightDetailsResponse,"example":!include /exchange_modules/c63aa1e8-b7a6-40ed-872b-0362599242b1/bookmyholiday/1.0.16/Examples/Flight/bookedFlightDetailsResponse.json
 },
-flightLibrary.requestItemTrait: {"typeName":flightLibrary.bookedFlightDetailsRequest,"example":!include /exchange_modules/c63aa1e8-b7a6-40ed-872b-0362599242b1/bookmyholiday/1.0.13/Examples/Flight/bookedFlightDetailsRequest.json}]
+flightLibrary.requestItemTrait: {"typeName":flightLibrary.bookedFlightDetailsRequest,"example":!include /exchange_modules/c63aa1e8-b7a6-40ed-872b-0362599242b1/bookmyholiday/1.0.16/Examples/Flight/bookedFlightDetailsRequest.json}]
    

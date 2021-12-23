@@ -12,6 +12,7 @@ http://www.mulesoft.org/schema/mule/api-gateway http://www.mulesoft.org/schema/m
 	</db:config>
 	<configuration-properties doc:name="Configuration properties" doc:id="23db7d05-6b30-4268-ad05-aec2a37649f7" file="flight-config.yaml" />
 	<configuration doc:name="Configuration" doc:id="056789e4-6995-4928-b2d9-c9f09c7b2cc4" defaultErrorHandler-ref="globalError_Handler" />
+	<api-gateway:autodiscovery apiId="17528419" ignoreBasePath="true" doc:name="API Autodiscovery" doc:id="3a2ed1a7-cc9f-4c17-8b2d-f3d722c96042" flowRef="flightbooking-api-main" />
 	<error-handler name="globalError_Handler" doc:id="df541bb2-131e-4963-82aa-570b2c3af66e" >
 		<on-error-propagate enableNotifications="true" logException="true" doc:name="On Error Propagate" doc:id="688bcb53-85f5-4487-8923-482ac8a537ff" type="DB:CONNECTIVITY,DB:BAD_SQL_SYNTAX,DB:QUERY_EXECUTION">
 			<ee:transform doc:name="Transform Message" doc:id="9957108e-a12f-4dc5-b70b-159019a046f1">
